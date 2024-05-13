@@ -1,7 +1,14 @@
 <?php
 /**
- * Plugin Name:	      Block Animations
- * Description:	      Add animations to Gutenberg blocks.
+ * WordPress plugin to add animations to Gutenberg blocks.
+ *
+ * @package           NathanDozen3\blockAnimations
+ * @author            Nathan Johnson
+ * @copyright         2024 Nathan Johnson
+ * @license           GPL-2.0-or-later
+ *
+ * Plugin Name:       Block Animations
+ * Description:       Add animations to Gutenberg blocks.
  * Requires at least: 6.3
  * Requires PHP:      8.0
  * Version:           0.1.0
@@ -16,15 +23,27 @@ namespace NathanDozen3\blockAnimations;
 
 define( 'BLOCK_ANIMATIONS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BLOCK_ANIMATIONS_URL', plugin_dir_url( __FILE__ ) );
+define( 'BLOCK_ANIMATIONS_VERSION', '0.1.0' );
 
 /**
  * Enqueue block animations front-end assets.
  *
  * @return void
  */
-function enqueue_assets() : void {
-	wp_enqueue_style( 'block-animations', BLOCK_ANIMATIONS_URL . '/block-animations.css' );
-	wp_enqueue_script( 'block-animations', BLOCK_ANIMATIONS_URL . '/block-animations.js' );
+function enqueue_assets(): void {
+	wp_enqueue_style(
+		'block-animations',
+		BLOCK_ANIMATIONS_URL . '/block-animations.css',
+		array(),
+		BLOCK_ANIMATIONS_VERSION,
+	);
+	wp_enqueue_script(
+		'block-animations',
+		BLOCK_ANIMATIONS_URL . '/block-animations.js',
+		array(),
+		BLOCK_ANIMATIONS_VERSION,
+		array( 'in_footer' => true ),
+	);
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
 
@@ -33,12 +52,13 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_assets' );
  *
  * @return void
  */
-function editor_script() : void {
+function editor_script(): void {
 	wp_register_script(
 		'block-animations',
 		BLOCK_ANIMATIONS_URL . 'build/index.js',
-		[ 'wp-blocks', 'wp-dom', 'wp-dom-ready', 'wp-edit-post' ],
-		filemtime( BLOCK_ANIMATIONS_PATH . 'build/index.js' )
+		array( 'wp-blocks', 'wp-dom', 'wp-dom-ready', 'wp-edit-post' ),
+		filemtime( BLOCK_ANIMATIONS_PATH . 'build/index.js' ),
+		array( 'in_footer' => true ),
 	);
 	wp_enqueue_script( 'block-animations' );
 }
