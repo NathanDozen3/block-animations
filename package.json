@@ -6,6 +6,8 @@
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
+		"minify": "css-minify -d ./assets/css/ -o ./assets/css/",
+		"uglify": "uglifyjs ./assets/js/block-animations.js -o ./assets/js/block-animations.min.js -c -m --source-map",
 		"test:phpcs": "vendor/bin/phpcs .",
 		"test:phpstan": "vendor/bin/phpstan analyze --memory-limit=1024M",
 		"build": "wp-scripts build src/index.js",
@@ -16,6 +18,8 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.8.0"
+		"@wordpress/scripts": "^27.8.0",
+		"css-minify": "^2.0.0",
+		"uglify-js": "^3.17.4"
 	}
 }

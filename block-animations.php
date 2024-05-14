@@ -33,13 +33,13 @@ define( 'BLOCK_ANIMATIONS_VERSION', '0.1.0' );
 function enqueue_assets(): void {
 	wp_enqueue_style(
 		'block-animations',
-		BLOCK_ANIMATIONS_URL . '/block-animations.css',
+		BLOCK_ANIMATIONS_URL . 'assets/css/block-animations.min.css',
 		array(),
 		BLOCK_ANIMATIONS_VERSION,
 	);
 	wp_enqueue_script(
 		'block-animations',
-		BLOCK_ANIMATIONS_URL . '/block-animations.js',
+		BLOCK_ANIMATIONS_URL . 'assets/js/block-animations.min.js',
 		array(),
 		BLOCK_ANIMATIONS_VERSION,
 		array( 'in_footer' => true ),
