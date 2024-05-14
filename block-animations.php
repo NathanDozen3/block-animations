@@ -57,7 +57,7 @@ function editor_script(): void {
 		'block-animations',
 		BLOCK_ANIMATIONS_URL . 'build/index.js',
 		array( 'wp-blocks', 'wp-dom', 'wp-dom-ready', 'wp-edit-post' ),
-		filemtime( BLOCK_ANIMATIONS_PATH . 'build/index.js' ),
+		strval( filemtime( BLOCK_ANIMATIONS_PATH . 'build/index.js' ) ),
 		array( 'in_footer' => true ),
 	);
 	wp_enqueue_script( 'block-animations' );

@@ -7,6 +7,7 @@
 	"main": "build/index.js",
 	"scripts": {
 		"test:phpcs": "vendor/bin/phpcs .",
+		"test:phpstan": "vendor/bin/phpstan analyze --memory-limit=1024M",
 		"build": "wp-scripts build src/index.js",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
