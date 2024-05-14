@@ -42,3 +42,15 @@
 [data-block-animations*="Right"].block-animate {
 	transform: translate3d(0,0,0);
 }
+
+@media (prefers-reduced-motion) {
+	[data-block-animations*="fadeIn"] {
+		opacity: 1 !important;
+	}
+	[data-block-animations*="Up"],
+	[data-block-animations*="Down"],
+	[data-block-animations*="Left"],
+	[data-block-animations*="Right"] {
+		transform: translate3d(0,0,0) !important;
+	}
+}
