@@ -165,7 +165,7 @@ const blockAnimationsAddAttributes = settings => {
       animation: {
         type: 'string'
       },
-      animationDirection: {
+      animationThreshold: {
         type: 'string'
       }
     })
@@ -184,52 +184,72 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3_
     } = props;
     const {
       animation,
-      animationDirection
+      animationThreshold
     } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
       ...props
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Block Animations')
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation'),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Effect'),
       value: animation,
       options: [{
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('None'),
         value: ''
       }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade'),
-        value: 'fade'
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In'),
+        value: 'fadeIn'
       }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Zoom'),
-        value: 'zoom'
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Up Small'),
+        value: 'fadeInUpSmall'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Down Small'),
+        value: 'fadeInDownSmall'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Left Small'),
+        value: 'fadeInLeftSmall'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Right Small'),
+        value: 'fadeInRightSmall'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Up'),
+        value: 'fadeInUp'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Down'),
+        value: 'fadeInDown'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Left'),
+        value: 'fadeInLeft'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Right'),
+        value: 'fadeInRight'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Up Large'),
+        value: 'fadeInUpLarge'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Down Large'),
+        value: 'fadeInDownLarge'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Left Large'),
+        value: 'fadeInLeftLarge'
+      }, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Right Large'),
+        value: 'fadeInRightLarge'
       }],
       onChange: value => {
         setAttributes({
           animation: value
         });
       }
-    }), animation && animation === 'fade' && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Direction'),
-      value: animationDirection,
-      options: [{
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('None'),
-        value: ''
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Up'),
-        value: 'up'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Down'),
-        value: 'down'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Left'),
-        value: 'left'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Right'),
-        value: 'right'
-      }],
+    }), animation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Threshold'),
+      value: animationThreshold,
       onChange: value => {
+        if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
+          value = '';
+        }
         setAttributes({
-          animationDirection: value
+          animationThreshold: value
         });
       }
     }))));
@@ -243,16 +263,15 @@ wp.hooks.addFilter('editor.BlockEdit', 'block-animations/options', blockAnimatio
 const blockAnimationsSaveAttributes = (extraProps, blockType, attributes) => {
   const {
     animation,
-    animationDirection
+    animationThreshold
   } = attributes;
-  let dataBa = null;
   if (animation) {
-    dataBa = animation;
-    if (animationDirection) {
-      dataBa += '-';
-      dataBa += animationDirection;
+    let config = {};
+    if (animationThreshold) {
+      config.threshold = [animationThreshold];
     }
-    extraProps['data-ba'] = dataBa;
+    extraProps['data-block-animations'] = animation;
+    extraProps['data-block-animations-config'] = JSON.stringify(config);
   }
   return extraProps;
 };

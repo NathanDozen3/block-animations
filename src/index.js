@@ -1,5 +1,5 @@
 import { InspectorControls, } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -11,7 +11,7 @@ const blockAnimationsAddAttributes = ( settings ) => {
 	return Object.assign( {}, settings, {
 		attributes: Object.assign( {}, settings.attributes, {
 			animation: { type: 'string' },
-			animationDirection: { type: 'string' }
+			animationThreshold: { type: 'string' }
 		} ),
 	} );
 };
@@ -28,7 +28,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
 
 		const { attributes, setAttributes } = props;
-		const { animation, animationDirection } = attributes;
+		const { animation, animationThreshold } = attributes;
 
 		return (
 			<Fragment>
@@ -38,7 +38,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 						title={ __( 'Block Animations' ) }
 					>
 						<SelectControl
-							label={ __( 'Animation' ) }
+							label={ __( 'Animation Effect' ) }
 							value={ animation }
 							options={ [
 								{
@@ -46,12 +46,57 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 									value: ''
 								},
 								{
-									label: __( 'Fade' ),
-									value: 'fade'
+									label: __( 'Fade In' ),
+									value: 'fadeIn'
 								},
 								{
-									label: __( 'Zoom' ),
-									value: 'zoom'
+									label: __( 'Fade In Up Small' ),
+									value: 'fadeInUpSmall'
+								},
+								{
+									label: __( 'Fade In Down Small' ),
+									value: 'fadeInDownSmall'
+								},
+								{
+									label: __( 'Fade In Left Small' ),
+									value: 'fadeInLeftSmall'
+								},
+								{
+									label: __( 'Fade In Right Small' ),
+									value: 'fadeInRightSmall'
+								},
+								{
+									label: __( 'Fade In Up' ),
+									value: 'fadeInUp'
+								},
+								{
+									label: __( 'Fade In Down' ),
+									value: 'fadeInDown'
+								},
+								{
+									label: __( 'Fade In Left' ),
+									value: 'fadeInLeft'
+								},
+								{
+									label: __( 'Fade In Right' ),
+									value: 'fadeInRight'
+								}
+								,
+								{
+									label: __( 'Fade In Up Large' ),
+									value: 'fadeInUpLarge'
+								},
+								{
+									label: __( 'Fade In Down Large' ),
+									value: 'fadeInDownLarge'
+								},
+								{
+									label: __( 'Fade In Left Large' ),
+									value: 'fadeInLeftLarge'
+								},
+								{
+									label: __( 'Fade In Right Large' ),
+									value: 'fadeInRightLarge'
 								}
 							] }
 							onChange={ ( value ) => {
@@ -60,35 +105,19 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 								} );
 							} }
 						/>
-						{ (animation && animation === 'fade')&& (
-							<SelectControl
-								label={ __( 'Direction' ) }
-								value={ animationDirection }
-								options={ [
-									{
-										label: __( 'None' ),
-										value: ''
-									},
-									{
-										label: __( 'Up' ),
-										value: 'up'
-									},
-									{
-										label: __( 'Down' ),
-										value: 'down'
-									},
-									{
-										label: __( 'Left' ),
-										value: 'left'
-									},
-									{
-										label: __( 'Right' ),
-										value: 'right'
-									}
-								] }
+						{animation && (
+							<TextControl
+								label={ __( 'Animation Threshold' ) }
+								value={ animationThreshold }
 								onChange={ ( value ) => {
+									if (
+										( isNaN(value) || isNaN(parseFloat(value)) ) &&
+										value !== '.'
+									) {
+										value = '';
+									}
 									setAttributes( {
-										animationDirection: value,
+										animationThreshold: value,
 									} );
 								} }
 							/>
@@ -110,18 +139,16 @@ wp.hooks.addFilter(
  * Save custom attribute
  */
 const blockAnimationsSaveAttributes = ( extraProps, blockType, attributes ) => {
-	const { animation, animationDirection } = attributes;
+	const { animation, animationThreshold } = attributes;
 
-	let dataBa = null;
 	if ( animation ) {
-		dataBa = animation;
-
-		if ( animationDirection ) {
-			dataBa += '-';
-			dataBa += animationDirection;
+		let config = {
 		}
-
-		extraProps[ 'data-ba' ] = dataBa;
+		if (animationThreshold) {
+			config.threshold = [ animationThreshold ];
+		}
+		extraProps[ 'data-block-animations' ] = animation;
+		extraProps[ 'data-block-animations-config' ] = JSON.stringify(config);
 	}
 
     return extraProps;
