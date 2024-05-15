@@ -165,6 +165,12 @@ const blockAnimationsAddAttributes = settings => {
       animation: {
         type: 'string'
       },
+      animationDelay: {
+        type: 'string'
+      },
+      animationDuration: {
+        type: 'string'
+      },
       animationThreshold: {
         type: 'string'
       }
@@ -184,6 +190,8 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3_
     } = props;
     const {
       animation,
+      animationDelay,
+      animationDuration,
       animationThreshold
     } = attributes;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
@@ -252,6 +260,30 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3_
           animationThreshold: value
         });
       }
+    }), animation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Delay'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('In milliseconds'),
+      value: animationDelay,
+      onChange: value => {
+        if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
+          value = '';
+        }
+        setAttributes({
+          animationDelay: value
+        });
+      }
+    }), animation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Duration'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('In milliseconds'),
+      value: animationDuration,
+      onChange: value => {
+        if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
+          value = '';
+        }
+        setAttributes({
+          animationDuration: value
+        });
+      }
     }))));
   };
 }, 'blockAnimationsOptions');
@@ -263,10 +295,20 @@ wp.hooks.addFilter('editor.BlockEdit', 'block-animations/options', blockAnimatio
 const blockAnimationsSaveAttributes = (extraProps, blockType, attributes) => {
   const {
     animation,
+    animationDelay,
+    animationDuration,
     animationThreshold
   } = attributes;
   if (animation) {
-    let config = {};
+    let config = {
+      animation: animation
+    };
+    if (animationDelay) {
+      config.delay = animationDelay;
+    }
+    if (animationDuration) {
+      config.duration = animationDuration;
+    }
     if (animationThreshold) {
       config.threshold = [animationThreshold];
     }

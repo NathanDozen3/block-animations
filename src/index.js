@@ -11,6 +11,8 @@ const blockAnimationsAddAttributes = ( settings ) => {
 	return Object.assign( {}, settings, {
 		attributes: Object.assign( {}, settings.attributes, {
 			animation: { type: 'string' },
+			animationDelay: { type: 'string' },
+			animationDuration: { type: 'string' },
 			animationThreshold: { type: 'string' }
 		} ),
 	} );
@@ -28,7 +30,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
 
 		const { attributes, setAttributes } = props;
-		const { animation, animationThreshold } = attributes;
+		const { animation, animationDelay, animationDuration, animationThreshold } = attributes;
 
 		return (
 			<Fragment>
@@ -122,6 +124,42 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 								} }
 							/>
 						)}
+						{animation && (
+							<TextControl
+								label={ __( 'Animation Delay' ) }
+								help={ __( 'In milliseconds' ) }
+								value={ animationDelay }
+								onChange={ ( value ) => {
+									if (
+										( isNaN(value) || isNaN(parseFloat(value)) ) &&
+										value !== '.'
+									) {
+										value = '';
+									}
+									setAttributes( {
+										animationDelay: value,
+									} );
+								} }
+							/>
+						)}
+						{animation && (
+							<TextControl
+								label={ __( 'Animation Duration' ) }
+								help={ __( 'In milliseconds' ) }
+								value={ animationDuration }
+								onChange={ ( value ) => {
+									if (
+										( isNaN(value) || isNaN(parseFloat(value)) ) &&
+										value !== '.'
+									) {
+										value = '';
+									}
+									setAttributes( {
+										animationDuration: value,
+									} );
+								} }
+							/>
+						)}
 					</PanelBody>
 				</InspectorControls>
 			</Fragment>
@@ -139,10 +177,17 @@ wp.hooks.addFilter(
  * Save custom attribute
  */
 const blockAnimationsSaveAttributes = ( extraProps, blockType, attributes ) => {
-	const { animation, animationThreshold } = attributes;
+	const { animation, animationDelay, animationDuration, animationThreshold } = attributes;
 
 	if ( animation ) {
 		let config = {
+			animation: animation
+		}
+		if (animationDelay) {
+			config.delay = animationDelay;
+		}
+		if (animationDuration) {
+			config.duration = animationDuration;
 		}
 		if (animationThreshold) {
 			config.threshold = [ animationThreshold ];
