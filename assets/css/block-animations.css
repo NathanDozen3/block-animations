@@ -12,7 +12,6 @@
 }
 
 [data-block-animations] {
-	max-width: 100%;
 	transition: all var(--blockAnimations-transition-duration);
 }
 
