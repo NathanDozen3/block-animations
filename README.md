@@ -3,7 +3,7 @@
 * Contributors: NathanAtmoz
 * Tags: gutenberg, animations
 * Requires at least: 6.5
-* Tested up to: 6.5.3
+* Tested up to: 6.7.2
 * Stable tag: 0.1.0
 * Requires PHP: 8.0
 * License: GPLv2 or later
