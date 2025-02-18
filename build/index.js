@@ -252,6 +252,7 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
               });
             }
           }), animation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Threshold'),
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Threshold'),
             value: animationThreshold,
             onChange: value => {
@@ -263,6 +264,7 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
               });
             }
           }), animation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Delay'),
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Delay'),
             help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('In milliseconds'),
             value: animationDelay,
@@ -275,6 +277,7 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
               });
             }
           }), animation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Duration'),
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Duration'),
             help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('In milliseconds'),
             value: animationDuration,

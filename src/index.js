@@ -110,6 +110,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 						/>
 						{ animation && (
 							<TextControl
+								name={ __( 'Animation Threshold' ) }
 								label={ __( 'Animation Threshold' ) }
 								value={ animationThreshold }
 								onChange={ ( value ) => {
@@ -128,6 +129,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 						) }
 						{ animation && (
 							<TextControl
+								name={ __( 'Animation Delay' ) }
 								label={ __( 'Animation Delay' ) }
 								help={ __( 'In milliseconds' ) }
 								value={ animationDelay }
@@ -147,6 +149,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 						) }
 						{ animation && (
 							<TextControl
+								name={ __( 'Animation Duration' ) }
 								label={ __( 'Animation Duration' ) }
 								help={ __( 'In milliseconds' ) }
 								value={ animationDuration }
