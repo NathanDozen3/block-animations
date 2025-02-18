@@ -2,16 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ ((module) => {
-
-module.exports = window["React"];
-
-/***/ }),
-
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -59,6 +49,16 @@ module.exports = window["wp"]["element"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
 
 /***/ })
 
@@ -131,25 +131,24 @@ module.exports = window["wp"]["i18n"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -159,6 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Declare custom attribute
  */
+
 const blockAnimationsAddAttributes = settings => {
   return Object.assign({}, settings, {
     attributes: Object.assign({}, settings.attributes, {
@@ -182,7 +182,7 @@ wp.hooks.addFilter('blocks.registerBlockType', 'block-animations/add-attributes'
 /**
  * Add attributes to inspector controls
  */
-const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(BlockEdit => {
+const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.createHigherOrderComponent)(BlockEdit => {
   return props => {
     const {
       attributes,
@@ -194,97 +194,102 @@ const blockAnimationsOptions = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3_
       animationDuration,
       animationThreshold
     } = attributes;
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(BlockEdit, {
-      ...props
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Block Animations')
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Effect'),
-      value: animation,
-      options: [{
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('None'),
-        value: ''
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In'),
-        value: 'fadeIn'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Up Small'),
-        value: 'fadeInUpSmall'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Down Small'),
-        value: 'fadeInDownSmall'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Left Small'),
-        value: 'fadeInLeftSmall'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Right Small'),
-        value: 'fadeInRightSmall'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Up'),
-        value: 'fadeInUp'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Down'),
-        value: 'fadeInDown'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Left'),
-        value: 'fadeInLeft'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Right'),
-        value: 'fadeInRight'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Up Large'),
-        value: 'fadeInUpLarge'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Down Large'),
-        value: 'fadeInDownLarge'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Left Large'),
-        value: 'fadeInLeftLarge'
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fade In Right Large'),
-        value: 'fadeInRightLarge'
-      }],
-      onChange: value => {
-        setAttributes({
-          animation: value
-        });
-      }
-    }), animation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Threshold'),
-      value: animationThreshold,
-      onChange: value => {
-        if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
-          value = '';
-        }
-        setAttributes({
-          animationThreshold: value
-        });
-      }
-    }), animation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Delay'),
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('In milliseconds'),
-      value: animationDelay,
-      onChange: value => {
-        if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
-          value = '';
-        }
-        setAttributes({
-          animationDelay: value
-        });
-      }
-    }), animation && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Animation Duration'),
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('In milliseconds'),
-      value: animationDuration,
-      onChange: value => {
-        if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
-          value = '';
-        }
-        setAttributes({
-          animationDuration: value
-        });
-      }
-    }))));
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, {
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Block Animations'),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Effect'),
+            value: animation,
+            options: [{
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('None'),
+              value: ''
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In'),
+              value: 'fadeIn'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Up Small'),
+              value: 'fadeInUpSmall'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Down Small'),
+              value: 'fadeInDownSmall'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Left Small'),
+              value: 'fadeInLeftSmall'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Right Small'),
+              value: 'fadeInRightSmall'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Up'),
+              value: 'fadeInUp'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Down'),
+              value: 'fadeInDown'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Left'),
+              value: 'fadeInLeft'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Right'),
+              value: 'fadeInRight'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Up Large'),
+              value: 'fadeInUpLarge'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Down Large'),
+              value: 'fadeInDownLarge'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Left Large'),
+              value: 'fadeInLeftLarge'
+            }, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Fade In Right Large'),
+              value: 'fadeInRightLarge'
+            }],
+            onChange: value => {
+              setAttributes({
+                animation: value
+              });
+            }
+          }), animation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Threshold'),
+            value: animationThreshold,
+            onChange: value => {
+              if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
+                value = '';
+              }
+              setAttributes({
+                animationThreshold: value
+              });
+            }
+          }), animation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Delay'),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('In milliseconds'),
+            value: animationDelay,
+            onChange: value => {
+              if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
+                value = '';
+              }
+              setAttributes({
+                animationDelay: value
+              });
+            }
+          }), animation && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Duration'),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('In milliseconds'),
+            value: animationDuration,
+            onChange: value => {
+              if ((isNaN(value) || isNaN(parseFloat(value))) && value !== '.') {
+                value = '';
+              }
+              setAttributes({
+                animationDuration: value
+              });
+            }
+          })]
+        })
+      })]
+    });
   };
 }, 'blockAnimationsOptions');
 wp.hooks.addFilter('editor.BlockEdit', 'block-animations/options', blockAnimationsOptions);

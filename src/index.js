@@ -1,4 +1,4 @@
-import { InspectorControls, } from '@wordpress/block-editor';
+import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { Fragment } from '@wordpress/element';
@@ -13,7 +13,7 @@ const blockAnimationsAddAttributes = ( settings ) => {
 			animation: { type: 'string' },
 			animationDelay: { type: 'string' },
 			animationDuration: { type: 'string' },
-			animationThreshold: { type: 'string' }
+			animationThreshold: { type: 'string' },
 		} ),
 	} );
 };
@@ -28,78 +28,79 @@ wp.hooks.addFilter(
  */
 const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-
 		const { attributes, setAttributes } = props;
-		const { animation, animationDelay, animationDuration, animationThreshold } = attributes;
+		const {
+			animation,
+			animationDelay,
+			animationDuration,
+			animationThreshold,
+		} = attributes;
 
 		return (
 			<Fragment>
 				<BlockEdit { ...props } />
 				<InspectorControls>
-					<PanelBody
-						title={ __( 'Block Animations' ) }
-					>
+					<PanelBody title={ __( 'Block Animations' ) }>
 						<SelectControl
 							label={ __( 'Animation Effect' ) }
 							value={ animation }
 							options={ [
 								{
 									label: __( 'None' ),
-									value: ''
+									value: '',
 								},
 								{
 									label: __( 'Fade In' ),
-									value: 'fadeIn'
+									value: 'fadeIn',
 								},
 								{
 									label: __( 'Fade In Up Small' ),
-									value: 'fadeInUpSmall'
+									value: 'fadeInUpSmall',
 								},
 								{
 									label: __( 'Fade In Down Small' ),
-									value: 'fadeInDownSmall'
+									value: 'fadeInDownSmall',
 								},
 								{
 									label: __( 'Fade In Left Small' ),
-									value: 'fadeInLeftSmall'
+									value: 'fadeInLeftSmall',
 								},
 								{
 									label: __( 'Fade In Right Small' ),
-									value: 'fadeInRightSmall'
+									value: 'fadeInRightSmall',
 								},
 								{
 									label: __( 'Fade In Up' ),
-									value: 'fadeInUp'
+									value: 'fadeInUp',
 								},
 								{
 									label: __( 'Fade In Down' ),
-									value: 'fadeInDown'
+									value: 'fadeInDown',
 								},
 								{
 									label: __( 'Fade In Left' ),
-									value: 'fadeInLeft'
+									value: 'fadeInLeft',
 								},
 								{
 									label: __( 'Fade In Right' ),
-									value: 'fadeInRight'
-								}
-								,
+									value: 'fadeInRight',
+								},
 								{
 									label: __( 'Fade In Up Large' ),
-									value: 'fadeInUpLarge'
+									value: 'fadeInUpLarge',
 								},
 								{
 									label: __( 'Fade In Down Large' ),
-									value: 'fadeInDownLarge'
+									value: 'fadeInDownLarge',
 								},
 								{
 									label: __( 'Fade In Left Large' ),
-									value: 'fadeInLeftLarge'
+									value: 'fadeInLeftLarge',
 								},
 								{
 									label: __( 'Fade In Right Large' ),
-									value: 'fadeInRightLarge'
-								}
+									value: 'fadeInRightLarge',
+								},
 							] }
 							onChange={ ( value ) => {
 								setAttributes( {
@@ -107,13 +108,14 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 								} );
 							} }
 						/>
-						{animation && (
+						{ animation && (
 							<TextControl
 								label={ __( 'Animation Threshold' ) }
 								value={ animationThreshold }
 								onChange={ ( value ) => {
 									if (
-										( isNaN(value) || isNaN(parseFloat(value)) ) &&
+										( isNaN( value ) ||
+											isNaN( parseFloat( value ) ) ) &&
 										value !== '.'
 									) {
 										value = '';
@@ -123,15 +125,16 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 									} );
 								} }
 							/>
-						)}
-						{animation && (
+						) }
+						{ animation && (
 							<TextControl
 								label={ __( 'Animation Delay' ) }
 								help={ __( 'In milliseconds' ) }
 								value={ animationDelay }
 								onChange={ ( value ) => {
 									if (
-										( isNaN(value) || isNaN(parseFloat(value)) ) &&
+										( isNaN( value ) ||
+											isNaN( parseFloat( value ) ) ) &&
 										value !== '.'
 									) {
 										value = '';
@@ -141,15 +144,16 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 									} );
 								} }
 							/>
-						)}
-						{animation && (
+						) }
+						{ animation && (
 							<TextControl
 								label={ __( 'Animation Duration' ) }
 								help={ __( 'In milliseconds' ) }
 								value={ animationDuration }
 								onChange={ ( value ) => {
 									if (
-										( isNaN(value) || isNaN(parseFloat(value)) ) &&
+										( isNaN( value ) ||
+											isNaN( parseFloat( value ) ) ) &&
 										value !== '.'
 									) {
 										value = '';
@@ -159,7 +163,7 @@ const blockAnimationsOptions = createHigherOrderComponent( ( BlockEdit ) => {
 									} );
 								} }
 							/>
-						)}
+						) }
 					</PanelBody>
 				</InspectorControls>
 			</Fragment>
@@ -177,27 +181,27 @@ wp.hooks.addFilter(
  * Save custom attribute
  */
 const blockAnimationsSaveAttributes = ( extraProps, blockType, attributes ) => {
-	const { animation, animationDelay, animationDuration, animationThreshold } = attributes;
+	const { animation, animationDelay, animationDuration, animationThreshold } =
+		attributes;
 
 	if ( animation ) {
 		let config = {
-			animation: animation
-		}
-		if (animationDelay) {
+			animation: animation,
+		};
+		if ( animationDelay ) {
 			config.delay = animationDelay;
 		}
-		if (animationDuration) {
+		if ( animationDuration ) {
 			config.duration = animationDuration;
 		}
-		if (animationThreshold) {
+		if ( animationThreshold ) {
 			config.threshold = [ animationThreshold ];
 		}
 		extraProps[ 'data-block-animations' ] = animation;
-		extraProps[ 'data-block-animations-config' ] = JSON.stringify(config);
+		extraProps[ 'data-block-animations-config' ] = JSON.stringify( config );
 	}
 
-    return extraProps;
-
+	return extraProps;
 };
 wp.hooks.addFilter(
 	'blocks.getSaveContent.extraProps',
