@@ -13,51 +13,56 @@ window.onload = function () {
 			const isIntersecting = entry.isIntersecting;
 			const element = entry.target;
 
-			const config = JSON.parse(
-				entry.target.dataset.blockAnimationsConfig
-			);
+			const config = JSON.parse( element.dataset.blockAnimationsConfig );
 			const delay = config.delay ?? 0;
 
-			if ( isIntersecting === true ) {
-				setTimeout( function () {
-					element.classList.add( BLOCK_ANIMATIONS_ANIMATED_CLASS );
+			if ( isIntersecting ) {
+				setTimeout( () => {
+					window.requestAnimationFrame( () => {
+						element.classList.add(
+							BLOCK_ANIMATIONS_ANIMATED_CLASS
+						);
+					} );
 				}, delay );
 			} else {
-				setTimeout( function () {
-					element.classList.remove( BLOCK_ANIMATIONS_ANIMATED_CLASS );
+				setTimeout( () => {
+					window.requestAnimationFrame( () => {
+						element.classList.remove(
+							BLOCK_ANIMATIONS_ANIMATED_CLASS
+						);
+					} );
 				}, delay );
 			}
 		} );
 	};
 
-	document
-		.querySelectorAll( BLOCK_ANIMATIONS_SELECTOR )
-		.forEach( function ( el ) {
-			let config = JSON.parse( el.dataset.blockAnimationsConfig );
+	document.querySelectorAll( BLOCK_ANIMATIONS_SELECTOR ).forEach( ( el ) => {
+		const config = Object.assign(
+			{},
+			DEFAULT_CONFIG,
+			JSON.parse( el.dataset.blockAnimationsConfig )
+		);
 
-			for ( var key in DEFAULT_CONFIG ) {
-				if ( undefined === config[ key ] ) {
-					config[ key ] = DEFAULT_CONFIG[ key ];
-				}
+		Object.keys( config ).forEach( ( key ) => {
+			let dataAttr = 'data-block-animations';
+			if ( key !== 'animation' ) {
+				dataAttr += '-' + key;
+				el.setAttribute( dataAttr, config[ key ] );
 			}
-			for ( var key in config ) {
-				let dataAttr = 'data-block-animations';
-				if ( key !== 'animation' ) {
-					dataAttr += '-' + key;
-					el.setAttribute( dataAttr, config[ key ] );
-				}
-				if ( key === 'duration' ) {
-					el.style.setProperty(
-						'--blockAnimations-transition-' + key,
-						config[ key ] + 'ms'
-					);
-				}
+			if ( key === 'duration' ) {
+				el.style.setProperty(
+					'--blockAnimations-transition-' + key,
+					config[ key ] + 'ms'
+				);
 			}
-
-			let observer = new IntersectionObserver(
-				intersectionObserverCallback,
-				config
-			);
-			observer.observe( el );
 		} );
+	} );
+
+	const observer = new window.IntersectionObserver(
+		intersectionObserverCallback,
+		DEFAULT_CONFIG
+	);
+	document.querySelectorAll( BLOCK_ANIMATIONS_SELECTOR ).forEach( ( el ) => {
+		observer.observe( el );
+	} );
 };

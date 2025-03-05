@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
 
 /**
  * Declare custom attribute
+ * @param settings
  */
 const blockAnimationsAddAttributes = ( settings ) => {
 	return Object.assign( {}, settings, {
@@ -182,14 +183,17 @@ wp.hooks.addFilter(
 
 /**
  * Save custom attribute
+ * @param extraProps
+ * @param blockType
+ * @param attributes
  */
 const blockAnimationsSaveAttributes = ( extraProps, blockType, attributes ) => {
 	const { animation, animationDelay, animationDuration, animationThreshold } =
 		attributes;
 
 	if ( animation ) {
-		let config = {
-			animation: animation,
+		const config = {
+			animation,
 		};
 		if ( animationDelay ) {
 			config.delay = animationDelay;
